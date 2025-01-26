@@ -1,13 +1,13 @@
 # Description du projet
 
-Ce projet réalisé par GRARI Youssef et BENOMAR Fadel, étudiants du M1 Génie Logiciel, consiste en la réalisation d'un compilateur et d'une machine virtuelle en LISP. Le compilateur prend en entrée du code LISP et le transforme en code assembleur pour la machine virtuelle. On commence par charger le code généré dans La machine virtuelle puis nous l'exécutons dans cette dernière.
+Ce projet réalisé par GRARI Youssef et BENOMAR Fadel, étudiants du M1 Génie Logiciel, consiste en la réalisation d'un compilateur et d'une machine virtuelle en LISP. Le compilateur prend en entrée du code LISP et le transforme en code assembleur pour la machine virtuelle. On commence par charger le code généré dans la machine virtuelle puis nous l'exécutons dans cette dernière.
 
 ## Démarrage 
 
 - **`(clisp gotest.lisp)` Charge tout le code et lance les tests contenus dans `/tests/all-tests`**.
  
 - La fonction `(make-machine)` définie dans `machine/machine.lisp` et appelée dans `all-tests` Créé la machine `'mv` de nom `'mvtest` avec une mémoire de 10000 par défaut (dans nos tests nous utilisons une vm de taille 5000).
-- Les fonctions de la forme `(run-test-...)` permettent de lancer le compilateur, récupèrent le code généré et le chargent dans la machine virtuelle avant de l'executer avec `(run-machine)`.
+- Les fonctions de la forme `(run-test-...)` permettent de lancer le compilateur, récupèrent le code généré et le chargent dans la machine virtuelle avant de l'exécuter avec `(run-machine)`.
 - Exemple : `(run-test-case mv 5 '(+ 2 3) "ADD")`
 - Les tests de `fibo` et `fact` sont dans le fichier `/tests/tests/fibo_fact.lisp`
 
@@ -20,19 +20,19 @@ Vue d'ensemble: :
 
 Répertoire machine:
 
-- `machine.lisp` contient les fonctions principales de la machine virtuelle `make-machine`, `run-machine` (lance la machine et renvoie le contenu du registre R0), `load-machine` (chargeur), `exec-inst` (fonction résponsable de l'exécution des instructions asm), `reset-memoire` (nettoie et prépare les propriétés de la vm).
+- `machine.lisp` contient les fonctions principales de la machine virtuelle `make-machine`, `run-machine` (lance la machine et renvoie le contenu du registre R0), `load-machine` (chargeur), `exec-inst` (fonction responsable de l'exécution des instructions asm), `reset-memoire` (nettoie et prépare les propriétés de la vm).
 - `instructions.lisp` contient les instructions gérées par la machine (add sub move...).
 - `all-fonctions.lisp` et `/fonctions` contiennent les fonctions d'abstraction du fonctionnement de la machine, de gestion de ses composants mémoire / propriétés / étiquettes / pile / exécution.
 
 Répertoire compilateur:
 
 - `compilateur.lisp` contient la fonction principale du compilateur ("compilation").
-- `all-cas.lisp` et `/cas` contiennent les différents cas que l'on pourrait rencontrer dans du code lisp pour la compilation (booleens, boucles, fonctions, appels de fonctions ...).
+- `all-cas.lisp` et `/cas` contiennent les différents cas que l'on pourrait rencontrer dans du code lisp pour la compilation (booléens, boucles, fonctions, appels de fonctions ...).
 
 Répertoire test:
 
-- `all-tests.lisp` et `/tests` contiennent des tests simples (arithmétique, booleens...) ainsi que les tests fibo et fact.
-- Deux versions de run-test-fonction existent, une qui affiche le code assembleur généré et une autre qui ne l'affiche pas. (dans l'etat actuel la deuxième version est commentée)
+- `all-tests.lisp` et `/tests` contiennent des tests simples (arithmétique, booléens...) ainsi que les tests fibo et fact.
+- Deux versions de run-test-fonction existent, une qui affiche le code assembleur généré et une autre qui ne l'affiche pas. (dans l'état actuel, la deuxième version est commentée)
 - Nous affichons également l'état de la machine après l'exécution du code généré pour chaque test. Ceci peut être désactivé en commentant la ligne `(print-machine mv)` dans la fonction `run-machine`, ligne 93 du fichier `/machine/machine.lisp`.
 
 ## Structure de la VM
