@@ -58,105 +58,80 @@ Répertoire test:
 
 - Pour un meilleur affichage nous avons commenté les lignes correspondant aux tests unitaires et laissé celles des tests `fibo` et `fact`. Vous pouvez donc décommenter à votre convenance les tests que vous souhaitez lancer.
 
-- Nous affichons l'état de la machine avant et après l'exécution du code généré pour chaque test ainsi que le code assembleur généré.
+- Le code assembleur généré est affiché uniquement pour les fonctions (`run-test-fonction`).
 
 ## Affichage tests Fact 10 et Fibo 10
 
-Machine virtuelle : 
---- Nom : MVTEST 
---- Taille : 5000
-- Registres : 
---- R0 : 0 
---- R1 : 0 
---- R2 : 0 
---- R3 : 0
-- Pointeurs : 
---- BP : 100 
---- SP : 100 
---- VP : 1 
---- FP : 0
-- Drapeaux : 
---- DPP : 0 
---- DE : 0 
---- DPG : 0
-- Compteurs : 
---- PC : 4999 
---- LC : 4999 
+> Machine virtuelle : 
+> --- Nom : MVTEST 
+> --- Taille : 5000
+> - Registres : 
+> --- R0 : 0 
+> --- R1 : 0 
+> --- R2 : 0 
+> --- R3 : 0
+> - Pointeurs : 
+> --- BP : 100 
+> --- SP : 100 
+> --- VP : 1 
+> --- FP : 0
+> - Drapeaux : 
+> --- DPP : 0 
+> --- DE : 0 
+> --- DPG : 0
+> - Compteurs : 
+> --- PC : 4999 
+> --- LC : 4999 
+> 
+> Tests de fonctions Fibo et Fact :
+> F  : (DEFUN FACT (N) (IF (<= N 1) 1 (* N (FACT (- N 1)))))
+> Compiled Function Body: 
+> ((FENTRY) (@ FACT) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 1) :R0) (PUSH :R0) (POP :R0) (POP :R1) (CMP :R1 :R0) (MOVE (:DIESE T) :R0)
+>  (JLE (@ #:|finTest2878|)) (MOVE (:DIESE NIL) :R0) (@ #:|finTest2878|) (CMP :R0 (:DIESE NIL)) (JEQ (@ #:|sinon2876|)) (MOVE (:DIESE 1) :R0)
+>  (JMP (@ #:|finSi2877|)) (@ #:|sinon2876|) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 1) :R0)
+>  (PUSH :R0) (POP :R1) (POP :R0) (SUB :R1 :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2)
+>  (SUB (:DIESE 1) :R2) (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FACT)) (PUSH :R0) (POP :R1) (POP :R0) (MULT :R1 :R0) (@ #:|finSi2877|)
+>  (RTN) (FEXIT))
+> Compiled Function Call: 
+> ((MOVE (:DIESE 10) :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2) (SUB (:DIESE 1) :R2)
+>  (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FACT)))
+> 
+> Machine virtuelle : 
+> --- Nom : MVTEST 
+> --- Taille : 5000
+> - Registres : 
+> --- R0 : 3628800 
+> --- R1 : 362880 
+> --- R2 : 163 
+> --- R3 : 0
+> - Pointeurs : 
+> --- BP : 100 
+> --- SP : 100 
+> --- VP : 1 
+> --- FP : 0
+> - Drapeaux : 
+> --- DPP : 0 
+> --- DE : 0 
+> --- DPG : 0
+> - Compteurs : 
+> --- PC : 4946 
+> --- LC : 4946 
+> Real time: 0.003537 sec.
+> Run time: 0.003535 sec.
+> Space: 144952 Bytes
+> OK : "Factorielle" : (FACT 10) = 3628800
+> 
+> F  : (DEFUN FIBO (N) (IF (< N 2) N (+ (FIBO (- N 1)) (FIBO (- N 2)))))
+> Compiled Function Body: 
+> ((FENTRY) (@ FIBO) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 2) :R0) (PUSH :R0) (POP :R0) (POP :R1) (CMP :R1 :R0) (MOVE (:DIESE T) :R0)
+>  (JL (@ #:|finTest2881|)) (MOVE (:DIESE NIL) :R0) (@ #:|finTest2881|) (CMP :R0 (:DIESE NIL)) (JEQ (@ #:|sinon2879|)) (MOVE (LOC -1 0) :R0)
+>  (JMP (@ #:|finSi2880|)) (@ #:|sinon2879|) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 1) :R0) (PUSH :R0) (POP :R1) (POP :R0)
+>  (SUB :R1 :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2) (SUB (:DIESE 1) :R2)
+>  (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FIBO)) (PUSH :R0) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 2) :R0) (PUSH :R0)
+>  (POP :R1) (POP :R0) (SUB :R1 :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2)
+>  (SUB (:DIESE 1) :R2) (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FIBO)) (PUSH :R0) (POP :R1) (POP :R0) (ADD :R1 :R0) (@ #:|finSi2880|)
+>  (RTN) (FEXIT))
+> Compiled Function Call: 
+> ((MOVE (:DIESE 10) :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2) (SUB (:DIESE 1) :R2)
+>  (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FIBO)))
 
-Tests de fonctions Fibo et Fact :
-F  : (DEFUN FACT (N) (IF (<= N 1) 1 (* N (FACT (- N 1)))))
-Compiled Function Body: 
-((FENTRY) (@ FACT) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 1) :R0) (PUSH :R0) (POP :R0) (POP :R1) (CMP :R1 :R0) (MOVE (:DIESE T) :R0)
- (JLE (@ #:|finTest2878|)) (MOVE (:DIESE NIL) :R0) (@ #:|finTest2878|) (CMP :R0 (:DIESE NIL)) (JEQ (@ #:|sinon2876|)) (MOVE (:DIESE 1) :R0)
- (JMP (@ #:|finSi2877|)) (@ #:|sinon2876|) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 1) :R0)
- (PUSH :R0) (POP :R1) (POP :R0) (SUB :R1 :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2)
- (SUB (:DIESE 1) :R2) (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FACT)) (PUSH :R0) (POP :R1) (POP :R0) (MULT :R1 :R0) (@ #:|finSi2877|)
- (RTN) (FEXIT))
-Compiled Function Call: 
-((MOVE (:DIESE 10) :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2) (SUB (:DIESE 1) :R2)
- (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FACT)))
-
-Machine virtuelle : 
---- Nom : MVTEST 
---- Taille : 5000
-- Registres : 
---- R0 : 3628800 
---- R1 : 362880 
---- R2 : 163 
---- R3 : 0
-- Pointeurs : 
---- BP : 100 
---- SP : 100 
---- VP : 1 
---- FP : 0
-- Drapeaux : 
---- DPP : 0 
---- DE : 0 
---- DPG : 0
-- Compteurs : 
---- PC : 4946 
---- LC : 4946 
-Real time: 0.003537 sec.
-Run time: 0.003535 sec.
-Space: 144952 Bytes
-OK : "Factorielle" : (FACT 10) = 3628800
-
-F  : (DEFUN FIBO (N) (IF (< N 2) N (+ (FIBO (- N 1)) (FIBO (- N 2)))))
-Compiled Function Body: 
-((FENTRY) (@ FIBO) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 2) :R0) (PUSH :R0) (POP :R0) (POP :R1) (CMP :R1 :R0) (MOVE (:DIESE T) :R0)
- (JL (@ #:|finTest2881|)) (MOVE (:DIESE NIL) :R0) (@ #:|finTest2881|) (CMP :R0 (:DIESE NIL)) (JEQ (@ #:|sinon2879|)) (MOVE (LOC -1 0) :R0)
- (JMP (@ #:|finSi2880|)) (@ #:|sinon2879|) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 1) :R0) (PUSH :R0) (POP :R1) (POP :R0)
- (SUB :R1 :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2) (SUB (:DIESE 1) :R2)
- (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FIBO)) (PUSH :R0) (MOVE (LOC -1 0) :R0) (PUSH :R0) (MOVE (:DIESE 2) :R0) (PUSH :R0)
- (POP :R1) (POP :R0) (SUB :R1 :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2)
- (SUB (:DIESE 1) :R2) (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FIBO)) (PUSH :R0) (POP :R1) (POP :R0) (ADD :R1 :R0) (@ #:|finSi2880|)
- (RTN) (FEXIT))
-Compiled Function Call: 
-((MOVE (:DIESE 10) :R0) (PUSH :R0) (PUSH (:DIESE 1)) (MOVE :FP :R1) (MOVE :SP :FP) (MOVE :SP :R2) (SUB (:DIESE 1) :R2) (SUB (:DIESE 1) :R2)
- (PUSH :R2) (PUSH :R1) (PUSH (:DIESE 0)) (JSR (@ FIBO)))
-
-Machine virtuelle : 
---- Nom : MVTEST 
---- Taille : 5000
-- Registres : 
---- R0 : 55 
---- R1 : 21 
---- R2 : 135 
---- R3 : 0
-- Pointeurs : 
---- BP : 100 
---- SP : 100 
---- VP : 1 
---- FP : 0
-- Drapeaux : 
---- DPP : 0 
---- DE : 0 
---- DPG : 0
-- Compteurs : 
---- PC : 4876 
---- LC : 4876 
-Real time: 0.053141 sec.
-Run time: 0.052984 sec.
-Space: 2176792 Bytes
-GC: 2, GC time: 0.007908 sec.
-OK : "Fibonacci" : (FIBO 10) = 55
