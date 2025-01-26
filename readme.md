@@ -4,9 +4,10 @@ Ce projet réalisé par GRARI Youssef et BENOMAR Fadel, étudiants du M1 Génie 
 
 ## Démarrage 
 
-- `(clisp gotest.lisp)` Charge tout le code et lance les tests contenus dans `/tests/all-tests`.
-- La fonction `(make-machine)` Créé la machine `'mv` avec une mémoire de 10000 par défaut (dans nos tests nous utilisons un vm de taille 5000).
-- Les fonctions de la forme `(run-test-...)` permettent de lancer le comilateur, récupèrent le code généré et le chargent dans la machine virtuelle avant de l'executer avec `(run-machine)`.
+- **`(clisp gotest.lisp)` Charge tout le code et lance les tests contenus dans `/tests/all-tests`**.
+ 
+- La fonction `(make-machine)` définie dans `machine/machine.lisp` et appelée dans `all-tests` Créé la machine `'mv` de nom `'mvtest` avec une mémoire de 10000 par défaut (dans nos tests nous utilisons une vm de taille 5000).
+- Les fonctions de la forme `(run-test-...)` permettent de lancer le compilateur, récupèrent le code généré et le chargent dans la machine virtuelle avant de l'executer avec `(run-machine)`.
 - Exemple : `(run-test-case mv 5 '(+ 2 3) "ADD")`
 - Les tests de `fibo` et `fact` sont dans le fichier `/tests/tests/fibo_fact.lisp`
 
@@ -19,7 +20,7 @@ Vue d'ensemble: :
 
 Répertoire machine:
 
-- `machine.lisp` contient les fonctions principales de la machine virtuelle `make-machine`, `run-machine` (lance la machine et renvoie le contenu du registre R0), `load-machine` (chargeur), `exec-inst` (fonction résponsable de l'exécution des instructions asm), `reset-memory`.
+- `machine.lisp` contient les fonctions principales de la machine virtuelle `make-machine`, `run-machine` (lance la machine et renvoie le contenu du registre R0), `load-machine` (chargeur), `exec-inst` (fonction résponsable de l'exécution des instructions asm), `reset-memoire` (nettoie et prépare les propriétés de la vm).
 - `instructions.lisp` contient les instructions gérées par la machine (add sub move...).
 - `all-fonctions.lisp` et `/fonctions` contiennent les fonctions d'abstraction du fonctionnement de la machine, de gestion de ses composants mémoire / propriétés / étiquettes / pile / exécution.
 
