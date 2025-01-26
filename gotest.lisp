@@ -1,5 +1,3 @@
-;;(require "go.lisp")
-
 (require "machine/machine.lisp")
 
 (format t "~%***** Composant machine virtuelle chargé.~%~%")
